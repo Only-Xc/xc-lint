@@ -17,9 +17,11 @@ module.exports = {
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@babel/eslint-parser',
     ecmaFeatures: {
       jsx: true
-    }
+    },
+    requireConfigFile: false
   },
   rules: {
     'vue/multi-word-component-names': 'off'
