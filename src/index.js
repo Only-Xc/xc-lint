@@ -1,21 +1,17 @@
 const path = require('path')
 const requireAll = require('require-all')
 
-const eslint = requireAll({
-  dirname: path.resolve(__dirname, 'eslint')
-})
+function getAllConfig(dir) {
+  return requireAll({
+    dirname: path.resolve(__dirname, dir),
+    excludeDirs: /^[_*]/
+  })
+}
 
-const stylelint = requireAll({
-  dirname: path.resolve(__dirname, 'stylelint')
-})
-
-const prettier = requireAll({
-  dirname: path.resolve(__dirname, 'prettier')
-})
-
-const commitlint = requireAll({
-  dirname: path.resolve(__dirname, 'commitlint')
-})
+const eslint = getAllConfig('./eslint')
+const stylelint = getAllConfig('./stylelint')
+const prettier = getAllConfig('./prettier')
+const commitlint = getAllConfig('./commitlint')
 
 function getConfig(configs, rule) {
   if (!configs[rule]) {
